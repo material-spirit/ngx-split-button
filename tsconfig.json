@@ -17,6 +17,11 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
+    "paths": {
+      "split-button": [
+        "dist/split-button"
+      ]
+    },
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": [
