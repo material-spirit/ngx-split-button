@@ -1,0 +1,250 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '@angular/material' as mat;
+@use '@material/button/button-base' as mdc-button-base;
+@use '@material/button/button-text-theme' as mdc-button-text-theme;
+@use '@material/button/button-filled-theme' as mdc-button-filled-theme;
+@use '@material/button/button-shared-theme' as mdc-button-shared-theme;
+@use '@material/button/button-protected-theme' as mdc-button-protected-theme;
+@use '@material/button/button-outlined-theme' as mdc-button-outlined-theme;
+@use '@material/elevation/elevation-theme';
+@use '@material/tokens/resolvers';
+@use './mat-button-base';
+
+
+// based on mat/button/button.scss
+@mixin core-styles() {
+
+  // Keys to exclude from the MDC theme config, allowing us to drop styles we don't need.
+  // $override-keys: button-base.mat-private-button-remove-ripple((
+  //   label-text-font: null,
+  //   label-text-size: null,
+  //   label-text-tracking: null,
+  //   label-text-transform: null,
+  //   label-text-weight: null,
+  //   with-icon-icon-size: null,
+  //   label-text-color: inherit,
+  // ));
+
+
+  // Styles, that use MDC are wrapped inside private-disable-mdc-fallback-declarations
+  @include mat.private-disable-mdc-fallback-declarations {
+    // This call will render some base MDC-button styles. If mat button is already included, it will
+    // result in those styles being duplicated.
+    // Currently split-button depends on regular button also being included into an app.
+    //@include mdc-button.static-styles-without-ripple($query: mdc-helpers.$mdc-base-styles-query);
+
+    //**** Styles for all button types
+
+    .mdc-button.mas-split-button {
+      &__action-button {
+        @include mdc-button-shared-theme.horizontal-padding(
+          $padding: mdc-button-shared-theme.$contained-horizontal-padding,
+          $padding-icon: mdc-button-shared-theme.$contained-horizontal-padding-icon
+        );
+      }
+    }
+
+
+    //**** Type-specific styles
+
+    .mas-split-button--text {
+      $text-theme: mdc-button-text-theme.$light-theme;
+
+      @include mdc-button-text-theme.theme-styles((
+        container-height: map.get($text-theme, container-height),
+        container-shape: map.get($text-theme, container-shape),
+      ));
+
+      .mas-split-button__action-button, .mas-split-button__menu-button {
+        @include mdc-button-text-theme.theme-styles((
+          label-text-color: inherit,
+          disabled-label-text-color: map.get($text-theme, disabled-label-text-color),
+          container-height: map.get($text-theme, container-height),
+        ));
+      }
+
+      .mas-split-button__action-button {
+        @include mdc-button-text-theme.theme-styles((
+          //container-shape: map.get($text-theme, container-shape),
+          container-shape: 4px 0 0 4px
+        ));
+      }
+
+      .mas-split-button__menu-button {
+        @include mdc-button-text-theme.theme-styles((
+          //container-shape: map.get($text-theme, container-shape),
+          container-shape: 0 4px 4px 0
+        ));
+
+        min-width: map.get($text-theme, container-height);       // overriding .mdc-button's min-width
+      }
+    }
+
+
+    .mas-split-button--filled {
+      $filled-theme: mdc-button-filled-theme.$light-theme;
+
+      @include mdc-button-filled-theme.theme-styles((
+        container-elevation: map.get($filled-theme, container-elevation),
+        hover-container-elevation: map.get($filled-theme, hover-container-elevation),
+        //focus-container-elevation: map.get($filled-theme, focus-container-elevation),
+        container-shadow-color: map.get($filled-theme, container-shadow-color),
+        container-height: map.get($filled-theme, container-height),
+        container-shape: map.get($filled-theme, container-shape),
+      ));
+
+      .mas-split-button__action-button, .mas-split-button__menu-button {
+        @include mdc-button-filled-theme.theme-styles((
+          container-color: transparent,
+          disabled-container-color: map.get($filled-theme, disabled-container-color),
+          label-text-color: inherit,
+          disabled-label-text-color: map.get($filled-theme, disabled-label-text-color),
+          container-height: map.get($filled-theme, container-height),
+        ));
+      }
+
+      .mas-split-button__action-button {
+        @include mdc-button-filled-theme.theme-styles((
+          //container-shape: map.get($filled-theme, container-shape),
+          container-shape: 4px 0 0 4px
+        ));
+      }
+
+      .mas-split-button__menu-button {
+        @include mdc-button-filled-theme.theme-styles((
+          //container-shape: map.get($filled-theme, container-shape),
+          container-shape: 0 4px 4px 0
+        ));
+
+        min-width: map.get($filled-theme, container-height);       // overriding .mdc-button's min-width
+      }
+    }
+
+
+    .mas-split-button--elevated {
+      $elevated-theme: mdc-button-protected-theme.$light-theme;
+
+      @include mdc-button-protected-theme.theme-styles((
+        container-elevation: map.get($elevated-theme, container-elevation),
+        hover-container-elevation: map.get($elevated-theme, hover-container-elevation),
+        //focus-container-elevation: map.get($elevated-theme, focus-container-elevation),
+        container-shadow-color: map.get($elevated-theme, container-shadow-color),
+        container-height: map.get($elevated-theme, container-height),
+        container-shape: map.get($elevated-theme, container-shape),
+      ));
+
+      // In mat button styles, this call is done inside mdc-button.static-styles-without-ripple()
+      // Container doesn't need whole mdc-button.static-styles-without-ripple() because it has no padding.
+      // Also, elevation transition is applied to elevated button only.
+      @include mdc-button-base.raised-transition();
+
+      .mas-split-button__action-button, .mas-split-button__menu-button {
+        @include mdc-button-protected-theme.theme-styles((
+          container-color: transparent,
+          disabled-container-color: map.get($elevated-theme, disabled-container-color),
+          label-text-color: inherit,
+          disabled-label-text-color: map.get($elevated-theme, disabled-label-text-color),
+          container-height: map.get($elevated-theme, container-height),
+        ));
+      }
+
+      // Shape
+      .mas-split-button__action-button {
+        @include mdc-button-protected-theme.theme-styles((
+          //container-shape: map.get($elevated-theme, container-shape),
+          container-shape: 4px 0 0 4px
+        ));
+      }
+
+
+      .mas-split-button__menu-button {
+        @include mdc-button-protected-theme.theme-styles((
+          //container-shape: map.get($elevated-theme, container-shape),
+          container-shape: 0 4px 4px 0
+        ));
+
+        min-width: map.get($elevated-theme, container-height);       // overriding .mdc-button's min-width
+      }
+    }
+
+    .mas-split-button--outlined {
+      border-style: solid;
+
+      $outlined-theme: mdc-button-outlined-theme.$light-theme;
+
+      @include mdc-button-outlined-theme.theme-styles((
+        container-height: map.get($outlined-theme, container-height),
+        container-shape: map.get($outlined-theme, container-shape),
+        outline-color: map.get($outlined-theme, outline-color),
+        outline-width: map.get($outlined-theme, outline-width),
+        pressed-outline-color: map.get($outlined-theme, pressed-outline-color)
+      ));
+
+      // Previous mdc-button-outlined-theme.theme-styles() adds padding if outline-width is specified.
+      // This will remove padding for container.
+      padding: 0;
+
+      .mas-split-button__action-button, .mas-split-button__menu-button {
+        @include mdc-button-outlined-theme.theme-styles((
+          label-text-color: inherit,
+          disabled-label-text-color: map.get($outlined-theme, disabled-label-text-color),
+          container-height: map.get($outlined-theme, container-height),
+        ));
+      }
+
+      .mas-split-button__action-button {
+        @include mdc-button-outlined-theme.theme-styles((
+          //container-shape: map.get($elevated-theme, container-shape),
+          container-shape: 4px 0 0 4px
+        ));
+      }
+
+      .mas-split-button__menu-button {
+        @include mdc-button-outlined-theme.theme-styles((
+          //container-shape: map.get($elevated-theme, container-shape),
+          container-shape: 0 4px 4px 0
+        ));
+
+        min-width: map.get($outlined-theme, container-height);       // overriding .mdc-button's min-width
+      }
+    }
+  }
+
+  //**** Common styles, which doesn't use MDC
+
+  .mas-split-button {
+    display: inline-flex;
+
+    // This call is only needed for container, since it doesn't have :disabled
+    @include mat-button-base.mat-private-button-disabled();
+
+    &__action-button, &__menu-button {
+      @include mat-button-base.mat-private-button-interactive();
+    }
+
+    &__divider {
+      display: flex;
+      width: 1px;
+    }
+
+    &__divider-inner {
+      width: 1px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+    }
+
+    &__menu-button-icon {
+      fill: currentColor;
+      opacity: 0.8;         // TODO: find MDC/mat variable for this value. Move out to theme.
+    }
+  }
+
+  .mas-split-button--basic,
+  .mas-split-button--unelevated,
+  .mas-split-button--raised,
+  .mas-split-button--outlined {
+    //@include button-base.mat-private-button-touch-target(false);
+    //@include style-private.private-animation-noop();
+  }
+}

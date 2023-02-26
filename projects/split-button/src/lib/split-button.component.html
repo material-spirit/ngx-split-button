@@ -1,0 +1,31 @@
+<button class="mdc-button mas-split-button__action-button"
+  #mainButtonEl
+  [ngClass]="color ? 'mat-' + color : null"
+  [class.mat-unthemed]='!color'
+  [disabled]="disabled"
+  (click)="onActionClick()">
+  <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+  <span class="mdc-button__label"><ng-content></ng-content></span>
+  <span class="mat-mdc-focus-indicator"></span>
+  <span matRipple class="mat-mdc-button-ripple" [matRippleTrigger]="mainButtonEl"></span>
+  <span class="mat-mdc-button-touch-target"></span>
+</button>
+
+<div class="mas-split-button__divider">
+  <div class="mas-split-button__divider-inner"></div>
+</div>
+
+<button class="mdc-button mas-split-button__menu-button"
+  #sideButtonEl
+  [matMenuTriggerFor]="menu"
+  [ngClass]="color ? 'mat-' + color : null"
+  [class.mat-unthemed]='!color'
+  [disabled]="disabled"
+  aria-label="Example icon button with a vertical three dot icon">
+  <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+  <svg class="mas-split-button__menu-button-icon" viewBox="0 0 24 24" width="24px" height="24px" focusable="false">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+  <span class="mat-mdc-focus-indicator"></span>
+  <span matRipple class="mat-mdc-button-ripple" [matRippleTrigger]="sideButtonEl"></span>
+</button>

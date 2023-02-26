@@ -1,0 +1,24 @@
+@use 'material-spirit/src/material-spirit';
+@use '@angular/material' as mat;
+//@use '@material-spirit/ngx-split-button' as mas-split-button;
+@use 'split-button' as mas-split-button;
+
+
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+ density: 0,
+));
+
+@include mas-split-button.core-styles;
+@include mas-split-button.theme($my-theme);
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

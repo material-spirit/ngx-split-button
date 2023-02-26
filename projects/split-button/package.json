@@ -1,12 +1,38 @@
 {
-  "name": "split-button",
-  "version": "0.0.1",
+  "name": "@material-spirit/ngx-split-button",
+  "version": "0.0.0-alpha.3",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/material-spirit/ngx-split-button"
+  },
   "peerDependencies": {
     "@angular/common": "^15.1.0",
-    "@angular/core": "^15.1.0"
+    "@angular/core": "^15.1.0",
+    "@angular/material": "^15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "sass": "./_index.scss"
+    },
+    "./prebuilt/indigo-pink.css": {
+      "style": "./prebuilt/indigo-pink.css"
+    },
+    "./prebuilt/deeppurple-amber.css": {
+      "style": "./prebuilt/deeppurple-amber.css"
+    },
+    "./prebuilt/pink-bluegrey.css": {
+      "style": "./prebuilt/pink-bluegrey.css"
+    },
+    "./prebuilt/purple-green.css": {
+      "style": "./prebuilt/purple-green.css"
+    },
+    "./prebuilt/*": {
+      "style": "./prebuilt/*.css"
+    }
+  }
 }

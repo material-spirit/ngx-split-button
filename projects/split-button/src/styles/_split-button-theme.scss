@@ -1,0 +1,252 @@
+
+@use 'sass:map';
+@use '@angular/material' as mat;
+//@use '@angular/material/button/_button-theme-private.scss' as mat-button-theme-private;
+@use '@material/button/button-text-theme' as mdc-button-text-theme;
+@use '@material/button/button-filled-theme' as mdc-button-filled-theme;
+@use '@material/button/button-protected-theme' as mdc-button-protected-theme;
+@use '@material/button/button-outlined-theme' as mdc-button-outlined-theme;
+@use '@material/theme/theme-color' as mdc-theme-color;
+@use './mat-button-theme-private';
+
+
+@mixin _text-split-button-variant($color) {
+  .mas-split-button__action-button, .mas-split-button__menu-button {
+    @include mdc-button-text-theme.theme((
+      label-text-color: $color,
+    ));
+  }
+}
+
+@mixin _filled-split-button-variant($foreground, $background) {
+  .mas-split-button__action-button, .mas-split-button__menu-button {
+    @include mdc-button-filled-theme.theme((
+      container-color: $background,
+      label-text-color: $foreground,
+    ));
+  }
+
+  .mas-split-button__divider {
+    background-color: $background;
+  }
+
+  .mas-split-button__divider-inner {
+    background-color: $foreground;
+    opacity: 0.12;
+  }
+}
+
+@mixin _elevated-split-button-variant($foreground, $background) {
+  .mas-split-button__action-button, .mas-split-button__menu-button {
+    @include mdc-button-protected-theme.theme((
+      container-color: $background,
+      label-text-color: $foreground,
+    ));
+  }
+
+  .mas-split-button__divider {
+    background-color: $background;
+  }
+
+  .mas-split-button__divider-inner {
+    background-color: $foreground;
+    opacity: 0.12;
+  }
+}
+
+@mixin _outlined-split-button-variant($color) {
+  .mas-split-button__action-button, .mas-split-button__menu-button {
+    @include mdc-button-outlined-theme.theme((
+      label-text-color: $color,
+    ));
+  }
+}
+
+@mixin color($color-config) {
+  @include mat.private-using-mdc-theme($color-config) {
+    $is-dark: map.get($color-config, is-dark);
+    $on-surface: mdc-theme-color.prop-value(on-surface);
+    $surface: mdc-theme-color.prop-value(surface);
+    $disabled-ink-color: rgba($on-surface, if($is-dark, 0.5, 0.38));
+    $disabled-container-color: rgba($on-surface, 0.12);
+    $primary: mdc-theme-color.prop-value(primary);
+    $on-primary: mdc-theme-color.prop-value(on-primary);
+    $secondary: mdc-theme-color.prop-value(secondary);
+    $on-secondary: mdc-theme-color.prop-value(on-secondary);
+    $error: mdc-theme-color.prop-value(error);
+    $on-error: mdc-theme-color.prop-value(on-error);
+
+
+    .mas-split-button--text {
+      &.mat-unthemed {
+        @include _text-split-button-variant($on-surface);
+      }
+
+      &.mat-primary {
+        @include _text-split-button-variant($primary);
+      }
+
+      &.mat-accent {
+        @include _text-split-button-variant($secondary);
+      }
+
+      &.mat-warn {
+        @include _text-split-button-variant($error);
+      }
+
+      .mas-split-button__divider-inner {
+        background-color: $on-surface;
+        opacity: 0.12;
+      }
+
+      @include mat-button-theme-private.apply-disabled-style() {
+        .mas-split-button__action-button, .mas-split-button__menu-button {
+          @include mdc-button-text-theme.theme((
+            disabled-label-text-color: $disabled-ink-color,
+          ));
+        }
+      }
+    }
+
+
+    .mas-split-button--filled {
+      &.mat-unthemed {
+        @include _filled-split-button-variant($on-surface, $surface);
+      }
+
+      &.mat-primary {
+        @include _filled-split-button-variant($on-primary, $primary);
+      }
+
+      &.mat-accent {
+        @include _filled-split-button-variant($on-secondary, $secondary);
+      }
+
+      &.mat-warn {
+        @include _filled-split-button-variant($on-error, $error);
+      }
+
+      @include mat-button-theme-private.apply-disabled-style() {
+        .mas-split-button__action-button, .mas-split-button__menu-button {
+          @include mdc-button-filled-theme.theme((
+            disabled-container-color: $disabled-container-color,
+            disabled-label-text-color: $disabled-ink-color,
+          ));
+        }
+
+        .mas-split-button__divider {
+          background-color: $disabled-container-color;
+        }
+
+        .mas-split-button__divider-inner {
+          background-color: if($is-dark, white, black);
+          opacity: 0.12;
+        }
+      }
+    }
+
+
+    .mas-split-button--elevated {
+      &.mat-unthemed {
+        @include _elevated-split-button-variant($on-surface, $surface);
+      }
+
+      &.mat-primary {
+        @include _elevated-split-button-variant($on-primary, $primary);
+      }
+
+      &.mat-accent {
+        @include _elevated-split-button-variant($on-secondary, $secondary);
+      }
+
+      &.mat-warn {
+        @include _elevated-split-button-variant($on-error, $error);
+      }
+
+      @include mat-button-theme-private.apply-disabled-style() {
+        @include mdc-button-protected-theme.theme((
+          container-elevation: map.get(mdc-button-protected-theme.$light-theme, disabled-container-elevation)
+        ));
+
+        .mas-split-button__action-button, .mas-split-button__menu-button {
+          @include mdc-button-protected-theme.theme((
+            disabled-container-color: $disabled-container-color,
+            disabled-label-text-color: $disabled-ink-color,
+          ));
+        }
+
+        .mas-split-button__divider {
+          background-color: $disabled-container-color;
+        }
+
+        .mas-split-button__divider-inner {
+          background-color: if($is-dark, white, black);
+          opacity: 0.12;
+        }
+      }
+    }
+
+    .mas-split-button--outlined {
+      @include mdc-button-outlined-theme.theme((
+        outline-color: rgba(mdc-theme-color.prop-value(on-surface), 0.12)
+      ));
+
+      &.mat-unthemed {
+        @include _outlined-split-button-variant($on-surface);
+      }
+
+      &.mat-primary {
+        @include _outlined-split-button-variant($primary);
+      }
+
+      &.mat-accent {
+        @include _outlined-split-button-variant($secondary);
+      }
+
+      &.mat-warn {
+        @include _outlined-split-button-variant($error);
+      }
+
+      .mas-split-button__divider-inner {
+        background-color: $on-surface;
+        opacity: 0.12;
+      }
+
+      @include mat-button-theme-private.apply-disabled-style() {
+        @include mdc-button-outlined-theme.theme((
+          outline-color: rgba($on-surface, 0.12),
+        ));
+
+        .mas-split-button__action-button, .mas-split-button__menu-button {
+          @include mdc-button-outlined-theme.theme((
+            disabled-label-text-color: $disabled-ink-color,
+          ));
+        }
+      }
+    }
+
+
+    // Ripple colors
+    .mas-split-button--text, .mas-split-button--outlined {
+      .mas-split-button__action-button, .mas-split-button__menu-button {
+        @include mat-button-theme-private.ripple-theme-styles($color-config, false);
+      }
+    }
+
+    .mas-split-button--elevated, .mas-split-button--filled {
+      .mas-split-button__action-button, .mas-split-button__menu-button {
+        @include mat-button-theme-private.ripple-theme-styles($color-config, true);
+      }
+    }
+  }
+}
+
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($color-config);
+  }
+}

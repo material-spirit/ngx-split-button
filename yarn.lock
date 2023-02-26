@@ -5465,6 +5465,11 @@ make-fetch-happen@^11.0.0:
     socks-proxy-agent "^7.0.0"
     ssri "^10.0.0"
 
+material-spirit@0.0.0-alpha.5:
+  version "0.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/material-spirit/-/material-spirit-0.0.0-alpha.5.tgz#491000299f71474aa824c1bb6c84df6d16c0d32d"
+  integrity sha512-TomLtaywMWSz/clZnaocTbjgGVh8N3K20Rv9K1RCGkfdsop/95QVdJt29CVYmhjAU70NQcN0BC+rARtWmLN3fg==
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"

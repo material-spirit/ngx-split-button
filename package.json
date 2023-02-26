@@ -1,13 +1,17 @@
 {
-  "name": "ngx-split-button2",
+  "name": "ngx-split-button",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build split-button && yarn copy:license && yarn copy:readme && yarn build:css",
+    "build:css": "sass projects/split-button/src/styles/prebuilt:dist/split-button/prebuilt --load-path node_modules",
+    "watch": "ng build split-button --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "copy:license": "copy .\\LICENSE .\\dist\\split-button",
+    "copy:readme": "copy .\\README.md .\\dist\\split-button"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +25,7 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "material-spirit": "0.0.0-alpha.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

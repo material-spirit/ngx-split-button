@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "lib",
+            "prefix": "mas",
             "style": "kebab-case"
           }
         ]

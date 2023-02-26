@@ -3,5 +3,13 @@
   "dest": "../../dist/split-button",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    {
+      "input": "src/styles",
+      "glob": "**/*.scss",
+      "output": "./",
+      "ignore": ["**/prebuilt/*.scss"]
+    }
+  ]
 }
