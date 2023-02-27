@@ -1,6 +1,7 @@
 {
   "name": "@material-spirit/ngx-split-button",
   "version": "0.0.0-alpha.3",
+  "homepage": "https://split-button.material-spirit.dev",
   "license": "MIT",
   "repository": {
     "type" : "git",
