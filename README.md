@@ -1,5 +1,7 @@
 # Angular Material Split Button
 
+[![Rate this package](https://badges.openbase.com/js/rating/@material-spirit/ngx-split-button.svg?token=2IPDsNbnBzAz4pxdHpuJtw2mTk9td3b9EUUiRxBpVqk=)](https://openbase.com/js/@material-spirit/ngx-split-button?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
+
 DEMO&nbsp;&nbsp;&nbsp; &rarr; &nbsp;&nbsp;&nbsp; [https://split-button.material-spirit.dev](https://split-button.material-spirit.dev)
 
 ---
