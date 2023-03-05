@@ -1,7 +1,6 @@
-# MasSplitButton (@material-spirit/ngx-split-button)
-Material Spirit's (Mas) Angular Material Split Button.
+# Angular Material Split Button
 
-&gt; &gt; &gt; [https://split-button.material-spirit.dev](https://split-button.material-spirit.dev) < < <
+DEMO&nbsp;&nbsp;&nbsp; &rarr; &nbsp;&nbsp;&nbsp; [https://split-button.material-spirit.dev](https://split-button.material-spirit.dev)
 
 ---
 
