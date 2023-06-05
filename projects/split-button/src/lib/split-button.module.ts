@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 //import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -12,7 +12,7 @@ import { MasSplitButton } from './split-button.component';
     MasSplitButton
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     // MatButtonModule,
     MatMenuModule,
     MatRippleModule
