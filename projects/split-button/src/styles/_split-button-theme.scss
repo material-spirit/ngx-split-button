@@ -63,6 +63,9 @@
 }
 
 @mixin color($color-config) {
+
+
+
   @include mat.private-using-mdc-theme($color-config) {
     $is-dark: map.get($color-config, is-dark);
     $on-surface: mdc-theme-color.prop-value(on-surface);
@@ -75,7 +78,6 @@
     $on-secondary: mdc-theme-color.prop-value(on-secondary);
     $error: mdc-theme-color.prop-value(error);
     $on-error: mdc-theme-color.prop-value(on-error);
-
 
     .mas-split-button--text {
       &.mat-unthemed {
@@ -244,6 +246,13 @@
 
 
 @mixin theme($theme) {
+  @if mat.get-theme-version($theme) == 1 {
+
+  }
+  @else {
+    @error 'M2 is not supported';
+  }
+
   $color-config: mat.get-color-config($theme);
 
   @if $color-config != null {

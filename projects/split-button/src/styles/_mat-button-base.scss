@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use './material/core/style/layout-common';
 
 
 // Adds styles necessary to provide stateful interactions with the button. This includes providing
@@ -13,7 +13,7 @@
   .mat-mdc-button-ripple,
   .mat-mdc-button-persistent-ripple,
   .mat-mdc-button-persistent-ripple::before {
-    @include mat.private-fill;
+    @include layout-common.fill;
 
     // Disable pointer events for the ripple container and state overlay because the container
     // will overlay the user content and we don't want to disable mouse events on the user content.
@@ -46,7 +46,7 @@
 
   // The focus indicator should match the bounds of the entire button.
   .mat-mdc-focus-indicator {
-    @include mat.private-fill();
+    @include layout-common.fill;
   }
 
   &:focus .mat-mdc-focus-indicator::before {

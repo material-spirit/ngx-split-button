@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'sass:list';
-@use '@angular/material' as mat;
+
 @use '@material/button/button-base' as mdc-button-base;
 @use '@material/button/button-text-theme' as mdc-button-text-theme;
 @use '@material/button/button-filled-theme' as mdc-button-filled-theme;
@@ -9,6 +9,8 @@
 @use '@material/button/button-outlined-theme' as mdc-button-outlined-theme;
 @use '@material/elevation/elevation-theme';
 @use '@material/tokens/resolvers';
+@use '@material/theme/custom-properties' as mdc-custom-properties;
+
 @use './mat-button-base';
 
 
@@ -27,8 +29,9 @@
   // ));
 
 
-  // Styles, that use MDC are wrapped inside private-disable-mdc-fallback-declarations
-  @include mat.private-disable-mdc-fallback-declarations {
+  // Styles, that use MDC are wrapped inside mdc-custom-properties.configure()
+  // in order to disable emitting fallback values.
+  @include mdc-custom-properties.configure($emit-fallback-values: false, $emit-fallback-vars: false) {
     // This call will render some base MDC-button styles. If mat button is already included, it will
     // result in those styles being duplicated.
     // Currently split-button depends on regular button also being included into an app.
@@ -46,7 +49,7 @@
     }
 
 
-    //**** Type-specific styles
+    //**** Button type-specific styles
 
     .mas-split-button--text {
       $text-theme: mdc-button-text-theme.$light-theme;

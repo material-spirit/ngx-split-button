@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build split-button && yarn copy:license && yarn copy:readme && yarn build:css",
+    "build": "ng build split-button",
     "build:css": "sass projects/split-button/src/styles/prebuilt:dist/split-button/prebuilt --load-path node_modules",
     "watch": "ng build split-button --watch --configuration development",
     "test": "ng test",

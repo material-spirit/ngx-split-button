@@ -2,7 +2,7 @@
 2. Run commands from root directory.
 3. Build library project with watch option - `yarn watch`.
    * The library gets built to `dist\split-button` folder.
-3. Run test-app - `yarn serve`.
+3. Run test-app - `yarn start`.
    * The app uses `@material-spirit/ngx-split-button` library from `dist\split-button` folder.
    * It is achieved by configuring `compilerOptions/paths` in `tsconfig.json`.
 
